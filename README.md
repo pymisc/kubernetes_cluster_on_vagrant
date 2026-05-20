@@ -117,7 +117,7 @@ Once the script prints out your deployment execution output successfully, you ca
 3. Select the **Token** authentication approach method on the login portal.
 4. Copy the long authentication token string block printed out at the end of your playbook execution run (starting with `eyJhbGciOi...`), paste it into the field, and sign right in!
 
-
+```mermaid
 flowchart TD
     Workstation[💻 ThinkPad Host Workstation]
     Gateway[🔒 Secure Background SSH Gateway Tunnel<br/>port 6443:192.168.56.10:6443]
@@ -135,3 +135,4 @@ flowchart TD
     style API fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#000;
     style WebUI fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#000;
     style Dashboard fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#000;
+```
