@@ -112,8 +112,26 @@ Once the script prints out your deployment execution output successfully, you ca
 1. Open your web browser and head straight to:
    ```text
    [https://192.168.56.10:32443](https://192.168.56.10:32443)
-   
-```
+   ```
 2. **Handle TLS Warnings:** Your browser will prompt an internal self-signed SSL warning. Click **Advanced** -> **Proceed (unsafe)**. This is completely normal for isolated local environments utilizing the dashboard's embedded self-signed encryption keys.
 3. Select the **Token** authentication approach method on the login portal.
 4. Copy the long authentication token string block printed out at the end of your playbook execution run (starting with `eyJhbGciOi...`), paste it into the field, and sign right in!
+
+
+flowchart TD
+    Workstation[💻 ThinkPad Host Workstation]
+    Gateway[🔒 Secure Background SSH Gateway Tunnel<br/>port 6443:192.168.56.10:6443]
+    API[☸️ Kube API Server<br/>192.168.56.10:6443]
+    WebUI[🪪 Kong Ingress Proxy Service<br/>Static NodePort: 32443]
+    Dashboard[📊 Kubernetes Web Dashboard App]
+
+    Workstation -->|kubectl commands| Gateway
+    Gateway --> API
+    Workstation -->|Browser Access| WebUI
+    WebUI --> Dashboard
+
+    style Workstation fill:#e0f2fe,stroke:#38bdf8,stroke-width:2px,color:#000;
+    style Gateway fill:#f3e8ff,stroke:#a855f7,stroke-width:2px,color:#000;
+    style API fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#000;
+    style WebUI fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#000;
+    style Dashboard fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#000;
